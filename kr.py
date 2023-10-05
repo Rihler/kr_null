@@ -83,11 +83,10 @@ def game(name1, name2):
     players[sym1] = name1
     players[sym2] = name2
     while ex:
-        kr.change(players[name1], input(f"Введите координату, {name1} : "))
+        kr.change(sym1, input(f"Введите координату, {name1} : "))
         kr.print_field()
-        kr.change(players[name2], input(f"Введите координату, {name2}: "))
+        kr.change(sym2, input(f"Введите координату, {name2}: "))
         kr.print_field()
-        checkWinner(kr.sym, players[name2])
 
 game(input("Имя 1-го игрока: "), input("Имя 2-го игрока: "))
 
