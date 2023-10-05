@@ -23,11 +23,17 @@ class Field(object):
     def change(self, sym, x):
         while x not in self.cords.keys():
             x = input("Такой координаты нет, введите те, которые доступны на поле: ")
+        if self.cords[x][-1] != "+":
+            pass
+        else:
+            while self.cords[x][-1] == "+":
+                x = input("Данная клетка занята, выберите другую: ")
+                while x not in self.cords.keys():
+                    x = input("Такой координаты нет, введите те, которые доступны на поле: ")
         self.cords[x].append("+")
         x1 = self.cords[x][0]
         y1 = self.cords[x][1]
         self.field[x1][y1] = f"|{sym}|"
-
 
 def change_sym(name):
     print(f"Выбор символа для {name}")
@@ -45,9 +51,10 @@ def game(name1, name2):
     nsym1 = change_sym(name1)
     nsym2 = "O" if nsym1 == "X" else "X"
     while ex:
-        kr.change(nsym1, input("Введите координату: "))
+        kr.change(nsym1, input(f"Введите координату, {name1} : "))
         kr.print_field()
-        ex = int(input("Хотите продолжить игру: "))
+        kr.change(nsym2, input(f"Введите координату, {name2}: "))
+        kr.print_field()
 
 game(input("Имя 1-го игрока: "), input("Имя 2-го игрока: "))
 
