@@ -29,14 +29,25 @@ class Field(object):
         self.field[x1][y1] = f"|{sym}|"
 
 
-def game(name):
+def change_sym(name):
+    print(f"Выбор символа для {name}")
+    ch = ["1", "2"]
+    syms = input("1. X\n2. O\n")
+    while syms not in ch:
+        print("Данного выбора нет, выберите номер символа из предлагаемого списка")
+        syms = input("1. X\n2. O\n")
+    return "X" if syms == "1" else "O"
+
+def game(name1, name2):
     ex = True
     kr = Field()
     kr.print_field()
+    nsym1 = change_sym(name1)
+    nsym2 = "O" if nsym1 == "X" else "X"
     while ex:
-        kr.change(input("Введите символ: "), input("Введите координату: "))
+        kr.change(nsym1, input("Введите координату: "))
         kr.print_field()
         ex = int(input("Хотите продолжить игру: "))
 
+game(input("Имя 1-го игрока: "), input("Имя 2-го игрока: "))
 
-game("Yenter")
